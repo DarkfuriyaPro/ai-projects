@@ -43,11 +43,11 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
         f"👋 Hello, {user.first_name}!\n\n"
         "I'm your AI-powered assistant. Just send me a message and I'll reply "
         "using an advanced language model.\n\n"
-        "📌 *Available commands:*\n"
+        "*Available commands:*\n"
         "/start — Show this welcome message\n"
         "/help  — Get help and usage tips\n"
         "/reset — Clear your conversation history\n\n"
-        "Go ahead — say something! 🚀",
+        "Go ahead — say something!",
         parse_mode="Markdown",
     )
 
@@ -58,7 +58,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
     logger.info(f"User {user.id} triggered /help.")
 
     await update.message.reply_text(
-        "🤖 *AI Assistant — Help*\n\n"
+        "*AI Assistant — Help*\n\n"
         "*How to use:*\n"
         "Just type any message and I'll respond using AI. "
         "I remember your conversation so you can ask follow-up questions "
@@ -76,7 +76,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> No
         "› \"Explain quantum computing in simple terms\"\n"
         "› \"Write a Python function to reverse a string\"\n"
         "› \"What are the pros and cons of remote work?\"\n\n"
-        "💡 _Powered by OpenRouter · Built with python-telegram-bot_",
+        "_Powered by OpenRouter · Built with python-telegram-bot_",
         parse_mode="Markdown",
     )
 
@@ -105,7 +105,7 @@ async def reset_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 async def unknown_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handle unrecognised commands."""
     await update.message.reply_text(
-        "❓ Unknown command. Type /help to see what I can do."
+        "Unknown command. Type /help to see what I can do."
     )
 
 
@@ -144,7 +144,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         # 4. Roll back so the failed message isn't stuck in history
         pop_last_message(user.id)
         logger.warning(f"LLM error for user {user.id}: {e}")
-        await update.message.reply_text(f"⚠️ {e}")
+        await update.message.reply_text(f"{e}")
         return
 
     # 3. Persist assistant reply and respond
@@ -163,7 +163,7 @@ async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> N
     # Notify the user if the error occurred inside a real Update
     if isinstance(update, Update) and update.message:
         await update.message.reply_text(
-            "⚠️ An unexpected error occurred. Please try again in a moment."
+            "An unexpected error occurred. Please try again in a moment."
         )
 
 
