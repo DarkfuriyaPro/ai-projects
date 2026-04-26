@@ -1,8 +1,12 @@
 # Telegram bot framework
 python-telegram-bot==21.6
 
-# Async HTTP client for LLM API calls
+# Async HTTP client for AI API calls
 httpx==0.27.2
 
 # Environment variable management
 python-dotenv==1.0.1
+
+# FastAPI and server (added in Step 9)
+# fastapi==0.115.0
+# uvicorn==0.30.6
